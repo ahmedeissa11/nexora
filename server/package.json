@@ -1,0 +1,40 @@
+{
+  "name": "nexora-server",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Nexora boutique API — serves the locked vanilla SPA",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "node scripts/refuse-production.js && prisma migrate dev --name init",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:seed": "node prisma/seed.js",
+    "db:setup": "node scripts/refuse-production.js && prisma migrate deploy && node prisma/seed.js",
+    "db:safety": "node scripts/db-safety-regression.js",
+    "cutover:check": "node scripts/supabase-cutover-check.js",
+    "prod:check": "node scripts/production-readiness-check.js",
+    "integrity:check": "node scripts/data-integrity-check.js",
+    "reliability": "node scripts/reliability-regression.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@supabase/supabase-js": "^2.109.0",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "express": "^4.22.2",
+    "express-rate-limit": "^8.7.0",
+    "express-session": "^1.19.0",
+    "helmet": "^8.3.0",
+    "prisma": "^5.22.0",
+    "stripe": "^16.12.0"
+  }
+}

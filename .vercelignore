@@ -1,0 +1,14 @@
+server
+node_modules
+.cache
+.npm
+.local
+uploads
+*.md
+.env
+.env.*
+!.env.example
+.git
+.railway
+server/.env
+server/node_modules

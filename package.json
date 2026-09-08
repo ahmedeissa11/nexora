@@ -1,0 +1,12 @@
+{
+  "name": "nexora",
+  "private": true,
+  "version": "1.0.0",
+  "description": "NEXORA static storefront. API lives in /server (Railway).",
+  "scripts": {
+    "build": "node scripts/write-frontend-config.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
