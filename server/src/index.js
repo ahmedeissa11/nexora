@@ -1,6 +1,8 @@
 "use strict";
 
+const fs = require("fs");
 const http = require("http");
+const path = require("path");
 const { logError, logInfo } = require("./utils/log");
 
 function resolvePort() {
@@ -9,6 +11,29 @@ function resolvePort() {
   const n = Number(raw);
   if (!Number.isInteger(n) || n < 1 || n > 65535) return 3000;
   return n;
+}
+
+function selectPrismaEngine() {
+  const dirs = [
+    path.join(__dirname, "../node_modules/.prisma/client"),
+    path.join(__dirname, "../node_modules/@prisma/engines"),
+  ];
+  const names = [
+    "libquery_engine-debian-openssl-3.0.x.so.node",
+    "libquery_engine-linux-openssl-3.0.x.so.node",
+    "libquery_engine-debian-openssl-1.1.x.so.node",
+    "libquery_engine-linux-openssl-1.1.x.so.node",
+  ];
+  for (const dir of dirs) {
+    for (const name of names) {
+      const full = path.join(dir, name);
+      if (fs.existsSync(full)) {
+        process.env.PRISMA_QUERY_ENGINE_LIBRARY = full;
+        return name;
+      }
+    }
+  }
+  return null;
 }
 
 const port = resolvePort();
@@ -55,6 +80,8 @@ process.on("uncaughtException", (err) => {
 });
 
 async function boot() {
+  const engine = selectPrismaEngine();
+  logInfo("prisma-engine", { file: engine || "auto" });
   logInfo("boot-env", {
     nodeEnv: process.env.NODE_ENV || "",
     port,
