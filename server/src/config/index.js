@@ -40,7 +40,6 @@ function parsePort() {
   const prod = (process.env.NODE_ENV || "development") === "production";
   const raw = process.env.PORT;
   if (raw == null || String(raw).trim() === "") {
-    if (prod) throw new Error("Missing required environment variable PORT");
     return 3000;
   }
   const n = Number(raw);
@@ -144,8 +143,10 @@ if (config.isProd && !looksLikeSecret(config.sessionSecret)) {
 if (config.isProd && config.stripeMock) {
   throw new Error("STRIPE_MOCK is not allowed in production");
 }
-if (config.isProd && (!looksLikeSecret(stripeSecretKey) || !looksLikeSecret(stripeWebhookSecret))) {
-  throw new Error("STRIPE_SECRET_KEY and STRIPE_WEBHOOK_SECRET are required in production");
+if (config.isProd && (stripeSecretKey || stripeWebhookSecret)) {
+  if (!looksLikeSecret(stripeSecretKey) || !looksLikeSecret(stripeWebhookSecret)) {
+    throw new Error("STRIPE_SECRET_KEY and STRIPE_WEBHOOK_SECRET are required in production");
+  }
 }
 if (config.isProd && !config.publicOrigin) {
   throw new Error("PUBLIC_ORIGIN must be the https frontend origin in production");

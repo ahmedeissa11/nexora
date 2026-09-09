@@ -28,7 +28,11 @@ async function start() {
   const app = createApp();
   const stopSweeper = startReservationSweeper();
   const server = await listen(app);
-  logInfo("listen", { port: config.port, env: config.env });
+  logInfo("listen", {
+    port: config.port,
+    env: config.env,
+    stripe: config.stripeConfigured ? "configured" : "not_configured",
+  });
 
   const handle = { app, server, stopSweeper };
   return handle;

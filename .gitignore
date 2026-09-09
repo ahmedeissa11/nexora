@@ -3,6 +3,7 @@
 !.env.example
 !**/.env.example
 server/.env
+abasthan-import.env
 node_modules
 **/node_modules
 *.log
@@ -35,3 +36,6 @@ id_ed25519
 credentials.json
 google-services.json
 .neon
+bonto.pending.json
+server/.bonto.pending.json
+.bonto/
