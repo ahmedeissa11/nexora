@@ -1805,6 +1805,25 @@ select.field.compact {
   .spotlight { display: none; }
 }
 
+/* iOS Safari: full-viewport feTurbulence + backdrop-filter + large blurs OOM the tab. */
+@supports (-webkit-touch-callout: none) {
+  .grain { display: none; }
+  .glow { filter: none; }
+  .aura::before { filter: none; opacity: 0.2; }
+  .shell,
+  .header,
+  .overlay,
+  .wish-abs,
+  .compare-bar,
+  .hero-chip {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .shell { background: #101218; }
+  .trust::before,
+  .trust-item::before { animation: none; }
+}
+
 .aura { position: relative; }
 .aura::before {
   content: "";

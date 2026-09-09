@@ -527,7 +527,7 @@ function renderDashDetail() {
     .map((it) => {
       const line = typeof it.unitPrice === "number" ? money(it.unitPrice * (it.qty || 1)) : "";
       return `<div class="cart-line">
-        <img src="${h(safeSrc(it.image))}" alt="" />
+        <img src="${h(safeSrc(it.image))}" alt="" loading="lazy" decoding="async" />
         <div>
           <h3>${h(it.name)}</h3>
           <p>${h(it.finish || "")} · Qty ${h(it.qty)}</p>
@@ -895,7 +895,7 @@ function cardHTML(p) {
   return `
     <article class="card" data-product="${id}">
       <div class="card-media aura ${h(auraClass(p))}">
-        <img src="${h(safeSrc(p.image))}" alt="${h(p.name)}" />
+        <img src="${h(safeSrc(p.image))}" alt="${h(p.name)}"  loading="lazy" decoding="async" />
         <button class="icon-btn wish-abs ${on}" data-wish="${id}" aria-label="Save ${h(p.name)}">
           <svg viewBox="0 0 24 24"><path d="M12 19s-7-4.35-7-9.15A3.85 3.85 0 0 1 12 6.8a3.85 3.85 0 0 1 7 3.05C19 14.65 12 19 12 19z"/></svg>
         </button>
@@ -925,7 +925,7 @@ function tileHTML(c) {
   const count = PRODUCTS.filter((p) => cats.includes(p.category)).length;
   return `
     <article class="tile aura aura-blue-indigo" data-collection="${h(c.category)}">
-      <img src="${h(safeSrc(c.image))}" alt="${h(c.title)}" />
+      <img src="${h(safeSrc(c.image))}" alt="${h(c.title)}" loading="lazy" decoding="async" />
       <div class="tile-copy">
         <p class="eyebrow">${count} piece${count === 1 ? "" : "s"}</p>
         <h3>${h(c.title)}</h3>
@@ -1050,7 +1050,7 @@ function renderWish() {
       if (!p) return "";
       return `
         <div class="cart-line" data-product="${h(p.id)}">
-          <img src="${h(safeSrc(p.image))}" alt="" />
+          <img src="${h(safeSrc(p.image))}" alt=""  loading="lazy" decoding="async" />
           <div>
             <h3>${h(p.name)}</h3>
             <p>${h(p.type)} · ${money(p.price)}</p>
@@ -1084,7 +1084,7 @@ function renderCart() {
           : p.price * item.qty;
       return `
         <div class="cart-line">
-          <img src="${h(safeSrc(p.image))}" alt="" />
+          <img src="${h(safeSrc(p.image))}" alt=""  loading="lazy" decoding="async" />
           <div>
             <h3>${h(p.name)}</h3>
             <p>${h(finish ? finish.name : "")}</p>
@@ -1368,7 +1368,7 @@ function renderSearch(q) {
     .map(
       (p) => `
       <div class="search-hit" data-product="${h(p.id)}">
-        <img src="${h(safeSrc(p.image))}" alt="" />
+        <img src="${h(safeSrc(p.image))}" alt=""  loading="lazy" decoding="async" />
         <div>
           <h3>${h(p.name)}</h3>
           <p>${h(p.type)}</p>
@@ -1484,7 +1484,7 @@ function renderCompare() {
       const id = h(p.id);
       return `
       <article class="compare-col">
-        <img src="${h(safeSrc(p.image))}" alt="${h(p.name)}" />
+        <img src="${h(safeSrc(p.image))}" alt="${h(p.name)}"  loading="lazy" decoding="async" />
         <div class="body">
           <h3>${h(p.name)}</h3>
           <div class="compare-row"><span>Price</span><span>${priceHTML(p)}</span></div>
@@ -1535,7 +1535,7 @@ function renderPDP(id) {
   root.innerHTML = `
     <article class="pdp-hero">
       <div class="pdp-visual aura ${h(auraClass(p))}">
-        <img src="${h(safeSrc(p.image))}" alt="${h(p.name)}" />
+        <img src="${h(safeSrc(p.image))}" alt="${h(p.name)}"  loading="lazy" decoding="async" />
       </div>
       <div class="pdp-copy">
         <p class="eyebrow">${h(p.meta || p.category)}</p>
@@ -2127,12 +2127,6 @@ async function init() {
   await settleCheckoutReturn();
   $$("[data-footer]").forEach((el) => (el.innerHTML = FOOTER_HTML));
   fillSearchPopular();
-  renderHome();
-  renderShop();
-  renderCollections();
-  renderJournal();
-  renderArrivals();
-  renderDeals();
   renderCart();
   renderWish();
   updateBadge();
