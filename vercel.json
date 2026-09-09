@@ -31,6 +31,8 @@
     {
       "source": "/api/:path*",
       "destination": "https://finer-valuable-polar-bear.abasthan.app/api/:path*"
-    }
+    },
+    { "source": "/admin", "destination": "/index.html" },
+    { "source": "/admin/:path*", "destination": "/index.html" }
   ]
 }

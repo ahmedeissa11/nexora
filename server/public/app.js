@@ -2109,7 +2109,22 @@ async function loadArticlesFromApi() {
   }
 }
 
+function canonicalizeAdminPath() {
+  const path = location.pathname || "/";
+  if (path !== "/admin" && path.indexOf("/admin/") !== 0) return false;
+  const rest = path.replace(/^\/admin\/?/, "");
+  const hash = "#/admin" + (rest ? "/" + rest : "") + (location.search || "");
+  try {
+    history.replaceState({}, "", "/" + hash);
+  } catch (_e) {
+    location.replace("/" + hash);
+    return true;
+  }
+  return false;
+}
+
 async function init() {
+  if (canonicalizeAdminPath()) return;
   if (!Array.isArray(state.wishlist)) state.wishlist = [];
   if (!Array.isArray(state.recent)) state.recent = loadRecent();
   if (!Array.isArray(state.compare)) state.compare = [];
@@ -2118,6 +2133,9 @@ async function init() {
   if (typeof state.query !== "string") state.query = "";
   if (typeof state.page !== "number") state.page = 1;
   if (typeof state.perPage !== "number") state.perPage = 12;
+  fillSearchPopular();
+  bind();
+  route();
   await loadCatalogFromApi();
   await loadHomeFromApi();
   await loadArticlesFromApi();
@@ -2126,13 +2144,11 @@ async function init() {
   await loadOrdersFromApi();
   await settleCheckoutReturn();
   $$("[data-footer]").forEach((el) => (el.innerHTML = FOOTER_HTML));
-  fillSearchPopular();
   renderCart();
   renderWish();
   updateBadge();
   updateWishBadge();
   updateCompareBar();
-  bind();
   route();
 }
 

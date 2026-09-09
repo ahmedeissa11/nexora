@@ -45,7 +45,7 @@ body.nexora-admin-on {
 }
 
 #nexora-admin.is-on {
-  display: block;
+  display: block !important;
 }
 
 .ad-app {

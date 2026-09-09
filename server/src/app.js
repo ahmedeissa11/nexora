@@ -89,6 +89,9 @@ function createApp() {
     app.get("/", (req, res) => {
       res.sendFile(path.join(FRONT, "index.html"));
     });
+    app.get(["/admin", "/admin/*"], (req, res) => {
+      res.sendFile(path.join(FRONT, "index.html"));
+    });
   }
 
   app.use(notFoundHandler);
