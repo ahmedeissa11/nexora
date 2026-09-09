@@ -2,6 +2,7 @@
   "version": 2,
   "framework": null,
   "buildCommand": "node scripts/write-frontend-config.js",
+  "outputDirectory": ".",
   "headers": [
     {
       "source": "/(.*)",
