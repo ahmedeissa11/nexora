@@ -14,15 +14,28 @@ function listen(app) {
   });
 }
 
-async function start() {
+async function start(opts = {}) {
   const app = createApp();
   const stopSweeper = startReservationSweeper();
-  const server = await listen(app);
-  logInfo("listen", {
-    port: config.port,
-    env: config.env,
-    stripe: config.stripeConfigured ? "configured" : "not_configured",
-  });
+  let httpServer = opts.server;
+  if (httpServer) {
+    httpServer.removeAllListeners("request");
+    httpServer.on("request", app);
+    logInfo("listen", {
+      port: config.port,
+      env: config.env,
+      stripe: config.stripeConfigured ? "configured" : "not_configured",
+      mode: "attach",
+    });
+  } else {
+    httpServer = await listen(app);
+    logInfo("listen", {
+      port: config.port,
+      env: config.env,
+      stripe: config.stripeConfigured ? "configured" : "not_configured",
+      mode: "bind",
+    });
+  }
 
   try {
     await pingDatabase();
@@ -34,8 +47,7 @@ async function start() {
     }
   }
 
-  const handle = { app, server, stopSweeper };
-  return handle;
+  return { app, server: httpServer, stopSweeper };
 }
 
 function shutdown(handle, { signal, disconnectPrisma = true, timeoutMs = 15000 } = {}) {
