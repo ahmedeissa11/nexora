@@ -70,8 +70,14 @@ function createApp() {
     next();
   });
 
-  if (config.serveStatic) {
-    const FRONT = config.frontendRoot;
+  const bundledFront = path.join(__dirname, "../public");
+  const FRONT =
+    fs.existsSync(path.join(bundledFront, "index.html"))
+      ? bundledFront
+      : config.serveStatic
+        ? config.frontendRoot
+        : "";
+  if (FRONT) {
     app.use(
       express.static(FRONT, {
         index: false,

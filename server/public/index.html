@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexora — Technology, curated</title>
+  <meta name="description" content="Nexora. Premium technology, curated for those who appreciate quality, design and performance." />
+  <meta name="theme-color" content="#07080A" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css?v=16" />
+  <link rel="stylesheet" href="admin.css?v=1" />
+  <script src="config.js"></script>
+  <script src="catalog.js?v=4" defer></script>
+  <script src="api.js?v=4" defer></script>
+  <script src="app.js?v=20" defer></script>
+  <script src="admin.js?v=1" defer></script>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="glow glow-a"></span>
+    <span class="glow glow-b"></span>
+    <span class="glow glow-c"></span>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+  <div class="shell">
+    <header class="header">
+      <a class="logo" href="#/" data-nav="home" id="nexora-logo" aria-label="Nexora home">
+        <svg class="mark" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.25"/>
+          <circle cx="12" cy="12" r="2.15" fill="currentColor"/>
+          <path d="M3.2 12h17.6" fill="none" stroke="currentColor" stroke-width="1" opacity="0.45"/>
+        </svg>
+        <span>NEXORA</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#/shop" data-nav="shop">Shop</a>
+        <a href="#/collections" data-nav="collections">Categories</a>
+        <a href="#/arrivals" data-nav="arrivals">Arrivals</a>
+        <a href="#/deals" data-nav="deals">Deals</a>
+        <a href="#/atelier" data-nav="atelier">About</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn menu-btn" data-open="menu" aria-label="Menu">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <button class="icon-btn" data-open="search" aria-label="Search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16.2 16.2L21 21"/></svg>
+        </button>
+        <button class="icon-btn" data-open="wish" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24"><path d="M12 19s-7-4.35-7-9.15A3.85 3.85 0 0 1 12 6.8a3.85 3.85 0 0 1 7 3.05C19 14.65 12 19 12 19z"/></svg>
+          <span class="badge" id="wish-badge">0</span>
+        </button>
+        <button class="icon-btn" data-open="account" aria-label="Account">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.2 19.2c1.4-3 3.8-4.5 6.8-4.5s5.4 1.5 6.8 4.5"/></svg>
+        </button>
+        <button class="icon-btn" data-open="cart" aria-label="Cart">
+          <svg viewBox="0 0 24 24"><path d="M6.5 8h11l-.8 11.2a2 2 0 0 1-2 1.8H9.3a2 2 0 0 1-2-1.8L6.5 8Z"/><path d="M9 8V6.6A3 3 0 0 1 12 3.6 3 3 0 0 1 15 6.6V8"/></svg>
+          <span class="badge" id="cart-badge">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="main" id="main">
+      <section class="view active" data-view="home" id="view-home">
+        <article class="hero">
+          <div class="hero-visual aura aura-blue-violet">
+            <span class="hero-chip">Premium technology</span>
+            <img src="images/one.jpg" alt="Nexora flagship headphones" />
+          </div>
+          <div class="hero-copy">
+            <p class="eyebrow">Technology, curated</p>
+            <h1>Technology,<br>Curated.</h1>
+            <p class="lede">Premium products. Timeless design. Elevate your everyday.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary magnetic" href="#/shop">Explore Collection</a>
+              <a class="btn btn-ghost" href="#/arrivals">View New Arrivals</a>
+            </div>
+            <p class="hero-note">Complimentary worldwide shipping · Curated drops</p>
+          </div>
+        </article>
+
+        <div class="trust" aria-label="Brand">
+          <div class="trust-item trust-materials"><b>Premium materials</b><span>Milled, matched, finished by hand</span></div>
+          <div class="trust-item trust-curated"><b>Curated collection</b><span>Sixty-four instruments. No noise.</span></div>
+          <div class="trust-item trust-secure"><b>Secure checkout</b><span>Encrypted, private, unhurried</span></div>
+          <div class="trust-item trust-delivery"><b>Fast delivery</b><span>Dispatched within forty-eight hours</span></div>
+        </div>
+
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Limited</p>
+            <h2>The Nexora Drop</h2>
+            <p class="drop-sub">Limited pieces. Carefully selected.</p>
+          </div>
+          <div class="drop-clock" id="drop-clock">04 : 12 : 36</div>
+        </div>
+        <div class="grid-drop" id="drop-grid"></div>
+
+        <div class="section-head">
+          <h2>In the house</h2>
+          <a class="linkish" href="#/shop">View all</a>
+        </div>
+        <div class="grid-4" id="home-grid"></div>
+
+        <article class="editorial">
+          <div class="editorial-visual aura aura-blue-violet">
+            <img src="images/hp-nova-pro.jpg" alt="" />
+          </div>
+          <div class="editorial-copy">
+            <p class="eyebrow">Campaign</p>
+            <h2>Designed for the modern lifestyle.</h2>
+            <p class="lede">Quiet objects that recede — so the hour can come forward. Listening, time, and the desk, considered as one language.</p>
+            <a class="btn btn-ghost magnetic" href="#/collections">Explore categories</a>
+          </div>
+        </article>
+
+        <div class="section-head">
+          <h2>Categories</h2>
+          <a class="linkish" href="#/collections">All rooms</a>
+        </div>
+        <div class="grid-2" id="home-collections"></div>
+
+        <article class="editorial editorial-flip">
+          <div class="editorial-copy">
+            <p class="eyebrow">Craft</p>
+            <h2>Precision in every detail.</h2>
+            <p class="lede">Aluminum milled, not stamped. Drivers matched in pairs. A finish that does not ask to be noticed.</p>
+            <a class="btn btn-ghost magnetic" href="#/atelier">About Nexora</a>
+          </div>
+          <div class="editorial-visual aura aura-cyan-violet">
+            <img src="images/type.jpg" alt="" />
+          </div>
+        </article>
+
+        <div class="section-head" id="recent-head" hidden>
+          <h2>Still thinking about it?</h2>
+        </div>
+        <div class="grid-4" id="recent-grid"></div>
+
+        <article class="editorial">
+          <div class="editorial-visual aura aura-violet-blue">
+            <img src="images/w-apex.jpg" alt="" />
+          </div>
+          <div class="editorial-copy">
+            <p class="eyebrow">Experience</p>
+            <h2>Built to be experienced.</h2>
+            <p class="lede">Not announced. Worn, used, lived with. The instrument disappears; the hour remains.</p>
+            <a class="btn btn-primary magnetic" href="#/shop">Shop the catalog</a>
+          </div>
+        </article>
+
+        <div class="section-head">
+          <h2>From the journal</h2>
+          <a class="linkish" href="#/journal">All notes</a>
+        </div>
+        <div class="grid-2" id="home-journal"></div>
+        <footer class="footer" data-footer></footer>
+      </section>
+
+      <section class="view" data-view="shop" id="view-shop">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">Catalog</p>
+            <h1>Shop</h1>
+            <p id="shop-count">The catalog.</p>
+          </div>
+        </div>
+        <div class="shop-bar">
+          <div class="filters" id="shop-filters"></div>
+          <div class="shop-tools">
+            <input class="field compact" id="shop-q" type="search" placeholder="Search the catalog…" autocomplete="off" />
+            <select class="field compact" id="shop-price" aria-label="Price">
+              <option value="All">Any price</option>
+              <option value="0-150">Under $150</option>
+              <option value="150-300">$150–300</option>
+              <option value="300-600">$300–600</option>
+              <option value="600+">Over $600</option>
+            </select>
+            <select class="field compact" id="shop-sort" aria-label="Sort">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price, low to high</option>
+              <option value="price-desc">Price, high to low</option>
+              <option value="rating">Top rated</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid-4" id="shop-grid"></div>
+        <div class="pager" id="shop-pager"></div>
+        <footer class="footer" data-footer></footer>
+      </section>
+
+      <section class="view" data-view="arrivals" id="view-arrivals">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">Just in</p>
+            <h1>New Arrivals</h1>
+            <p>The latest instruments to enter the house.</p>
+          </div>
+        </div>
+        <div class="grid-4" id="arrivals-grid"></div>
+        <footer class="footer" data-footer></footer>
+      </section>
+
+      <section class="view" data-view="deals" id="view-deals">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">Selected</p>
+            <h1>Deals</h1>
+            <p>A few pieces, briefly reduced. No theatre.</p>
+          </div>
+        </div>
+        <div class="grid-4" id="deals-grid"></div>
+        <footer class="footer" data-footer></footer>
+      </section>
+
+      <section class="view" data-view="collections" id="view-collections">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">Rooms</p>
+            <h1>Categories</h1>
+            <p>Objects grouped by how they occupy a room.</p>
+          </div>
+        </div>
+        <div class="grid-2" id="collections-grid"></div>
+        <footer class="footer" data-footer></footer>
+      </section>
+
+      <section class="view" data-view="atelier" id="view-atelier">
+        <article class="editorial about-hero">
+          <div class="editorial-visual aura aura-blue-violet">
+            <img src="images/one.jpg" alt="Nexora flagship" />
+          </div>
+          <div class="editorial-copy">
+            <p class="eyebrow">Nexora · Lisbon</p>
+            <h2>Technology, curated for those who appreciate quality, design and performance.</h2>
+            <p class="lede">A small house of precision objects. Listening, light, time, and the desk — finished to recede once they are understood.</p>
+            <a class="btn btn-primary magnetic" href="#/shop">Explore the catalog</a>
+          </div>
+        </article>
+
+        <div class="stat-row">
+          <div class="stat"><b>2019</b><span>House founded in Lisbon</span></div>
+          <div class="stat"><b>64</b><span>Pieces in the current catalog</span></div>
+          <div class="stat"><b>3</b><span>Finishes, shared across the line</span></div>
+        </div>
+
+        <div class="grid-2" style="margin-top: 14px;">
+          <article class="prose-panel">
+            <h3>The house</h3>
+            <p>Nexora is a quiet atelier. Each piece is designed to disappear into a room once it is understood — not to announce itself from across the table.</p>
+            <p>We finish in graphite, midnight, and oxide. Surfaces are matte, edges are quiet, and the only light we add is the light you choose.</p>
+          </article>
+          <article class="prose-panel">
+            <h3>Materials</h3>
+            <p>Aluminum is milled, not stamped. Leather is vegetable-tanned. Ceramics are thrown in small lots and fired dark.</p>
+            <p>Drivers are matched in pairs. Movements are regulated by hand. Nothing in the catalog is seasonal.</p>
+          </article>
+        </div>
+
+        <div class="section-head">
+          <h2>Three finishes</h2>
+          <span class="linkish">One language, every object</span>
+        </div>
+        <div class="finish-row">
+          <article class="finish-card">
+            <i class="finish-chip" style="background:#6b717c"></i>
+            <h3>Graphite</h3>
+            <p>Milled aluminum, left matte. The standard temperature of the house.</p>
+          </article>
+          <article class="finish-card">
+            <i class="finish-chip" style="background:#1c1f27"></i>
+            <h3>Midnight</h3>
+            <p>Not a void. A dark that still admits a little blue near a window.</p>
+          </article>
+          <article class="finish-card">
+            <i class="finish-chip" style="background:#5c534c"></i>
+            <h3>Oxide</h3>
+            <p>The warmest of the three — a brown that is almost not a colour.</p>
+          </article>
+        </div>
+
+        <article class="editorial editorial-flip">
+          <div class="editorial-copy">
+            <p class="eyebrow">Craft</p>
+            <h2>Milled, matched, finished by hand.</h2>
+            <p class="lede">No seasonal colours. No fourth finish because a calendar asked. The test is simple: if the object is doing its work, you stop naming it.</p>
+            <a class="btn btn-ghost magnetic" href="#/journal">From the journal</a>
+          </div>
+          <div class="editorial-visual aura aura-blue-indigo">
+            <img src="images/type.jpg" alt="" />
+          </div>
+        </article>
+        <footer class="footer" data-footer></footer>
+      </section>
+
+      <section class="view" data-view="journal" id="view-journal">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">Notes</p>
+            <h1>Journal</h1>
+            <p>Short writing — rooms, materials, listening.</p>
+          </div>
+        </div>
+        <div class="grid-2" id="journal-grid"></div>
+        <footer class="footer" data-footer></footer>
+      </section>
+
+      <section class="view" data-view="product" id="view-product">
+        <div id="pdp"></div>
+        <footer class="footer" data-footer></footer>
+      </section>
+
+      <section class="view" data-view="compare" id="view-compare">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">Side by side</p>
+            <h1>Compare</h1>
+            <p>Price, rating, and the few numbers that matter.</p>
+          </div>
+        </div>
+        <div id="compare-table"></div>
+        <footer class="footer" data-footer></footer>
+      </section>
+
+      <section class="view" data-view="dashboard" id="view-dashboard">
+        <div class="page-title">
+          <div>
+            <p class="eyebrow">Account</p>
+            <h1>Your house</h1>
+            <p>Orders, saved pieces, and a quiet profile.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="prose-panel">
+            <h3>Profile</h3>
+            <p id="dash-user">Sign in to see orders and a quiet profile.</p>
+            <div class="buy-row" id="dash-actions" hidden style="margin-top:16px;margin-bottom:0">
+              <button class="btn btn-ghost" type="button" id="dash-logout">Sign out</button>
+            </div>
+          </article>
+          <article class="prose-panel">
+            <h3>Orders</h3>
+            <div id="dash-orders">Sign in to see your orders.</div>
+          </article>
+        </div>
+        <div id="dash-detail" hidden style="margin-top:14px"></div>
+        <footer class="footer" data-footer></footer>
+      </section>
+    </main>
+  </div>
+
+  <!-- Quick view -->
+  <div class="overlay" id="product-overlay" aria-hidden="true">
+    <div class="panel-float product-panel" role="dialog" aria-modal="true" aria-labelledby="p-name">
+      <button class="icon-btn close-abs" data-close="product" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="product-visual" id="qv-visual">
+        <img id="p-image" alt="" />
+      </div>
+      <div class="product-body">
+        <p class="eyebrow" id="p-meta"></p>
+        <h2 id="p-name"></h2>
+        <p class="lede" id="p-blurb"></p>
+        <p class="p-rating" id="p-rating"></p>
+        <p class="price" id="p-price"></p>
+        <p class="hero-note" id="p-stock"></p>
+        <div class="finishes" id="p-finishes"></div>
+        <div class="buy-row">
+          <div class="qty">
+            <button type="button" id="qty-minus" aria-label="Decrease">−</button>
+            <span id="qty-val">1</span>
+            <button type="button" id="qty-plus" aria-label="Increase">+</button>
+          </div>
+          <button class="btn btn-primary magnetic" id="p-add">Add to cart</button>
+          <button class="btn btn-ghost" id="p-buy" type="button">Buy now</button>
+        </div>
+        <div class="buy-row">
+          <button class="btn btn-ghost" id="p-wish" type="button">Save</button>
+          <button class="btn btn-ghost" id="p-full" type="button">Full story</button>
+        </div>
+        <dl class="specs" id="p-specs"></dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay overlay-right" id="cart-overlay" aria-hidden="true">
+    <aside class="panel-float cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="cart-head">
+        <h2 id="cart-title">Cart</h2>
+        <button class="icon-btn" data-close="cart" aria-label="Close cart">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="cart-items" id="cart-items"></div>
+      <div class="cart-foot" id="cart-foot">
+        <div class="total-row"><span>Subtotal</span><span id="cart-subtotal">$0</span></div>
+        <div class="total-row"><span>Shipping</span><span id="cart-shipping">Complimentary</span></div>
+        <div class="total-row"><span>Total</span><span id="cart-total">$0</span></div>
+        <button class="btn btn-primary btn-block magnetic" id="checkout-btn">Checkout</button>
+        <p class="hint">Complimentary shipping. Taxes at dispatch.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="overlay overlay-right" id="wish-overlay" aria-hidden="true">
+    <aside class="panel-float cart-panel" role="dialog" aria-modal="true">
+      <div class="cart-head">
+        <h2>Wishlist</h2>
+        <button class="icon-btn" data-close="wish" aria-label="Close">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="cart-items" id="wish-items"></div>
+    </aside>
+  </div>
+
+  <div class="overlay" id="search-overlay" aria-hidden="true">
+    <div class="panel-float search-panel search-panel-lg" role="dialog" aria-modal="true" aria-label="Search">
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16.2 16.2L21 21"/></svg>
+        <input id="search-input" type="search" placeholder="Search products, categories…" autocomplete="off" />
+        <span class="kbd">ESC</span>
+      </div>
+      <div class="search-popular" id="search-popular"></div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+
+  <div class="overlay" id="account-overlay" aria-hidden="true">
+    <div class="panel-float narrow-panel" role="dialog" aria-modal="true">
+      <button class="icon-btn close-abs" data-close="account" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <p class="eyebrow">Members</p>
+      <h2 id="acc-title">Sign in</h2>
+      <p class="lede">A quiet account for orders and drops. No marketing noise.</p>
+      <form class="stack" id="account-form">
+        <div>
+          <label class="lbl" for="acc-email">Email</label>
+          <input class="field" id="acc-email" type="email" required placeholder="you@domain.com" />
+        </div>
+        <div>
+          <label class="lbl" for="acc-pass">Password</label>
+          <input class="field" id="acc-pass" type="password" required placeholder="••••••••" />
+        </div>
+        <button class="btn btn-primary btn-block magnetic" type="submit">Continue</button>
+        <button class="btn btn-ghost btn-block" type="button" id="acc-dash">Your house</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="overlay" id="checkout-overlay" aria-hidden="true">
+    <div class="panel-float narrow-panel" role="dialog" aria-modal="true" id="checkout-card">
+      <button class="icon-btn close-abs" data-close="checkout" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div id="checkout-form-wrap">
+        <p class="eyebrow">Dispatch</p>
+        <h2>Checkout</h2>
+        <p class="lede">A short form. Stock is reserved, then you continue to Stripe Checkout when payment is available.</p>
+        <form class="stack" id="checkout-form">
+          <div class="form-grid">
+            <div>
+              <label class="lbl" for="chk-first">First name</label>
+              <input class="field" id="chk-first" required />
+            </div>
+            <div>
+              <label class="lbl" for="chk-last">Last name</label>
+              <input class="field" id="chk-last" required />
+            </div>
+            <div class="full">
+              <label class="lbl" for="chk-email">Email</label>
+              <input class="field" id="chk-email" type="email" required />
+            </div>
+            <div class="full">
+              <label class="lbl" for="chk-addr">Address</label>
+              <input class="field" id="chk-addr" required placeholder="Street, city, country" />
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block magnetic" type="submit" id="checkout-submit">Continue to payment</button>
+        </form>
+      </div>
+      <div id="checkout-success" hidden>
+        <div class="success-mark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12.5l5 5L19 7"/></svg>
+        </div>
+        <p class="eyebrow" id="checkout-success-eyebrow">Reserved</p>
+        <h2 id="checkout-success-title">Your order is reserved.</h2>
+        <p class="lede" id="checkout-success-note">Stock is held. Payment is still pending.</p>
+        <button class="btn btn-primary btn-block" data-close="checkout">Back to Nexora</button>
+        <button class="btn btn-ghost btn-block" type="button" id="checkout-orders" hidden>View orders</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="article-overlay" aria-hidden="true">
+    <article class="panel-float read-panel" role="dialog" aria-modal="true">
+      <button class="icon-btn close-abs" data-close="article" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <p class="eyebrow" id="a-meta"></p>
+      <h2 id="a-title"></h2>
+      <div id="a-body"></div>
+    </article>
+  </div>
+
+  <div class="overlay" id="system-overlay" aria-hidden="true">
+    <div class="panel-float narrow-panel system-panel" role="dialog">
+      <button class="icon-btn close-abs" data-close="system" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <p class="eyebrow">Internal</p>
+      <h2>Nexora System</h2>
+      <dl class="specs system-dl">
+        <div><dt>Store</dt><dd>ONLINE</dd></div>
+        <div><dt>Inventory</dt><dd>SYNCED</dd></div>
+        <div><dt>Payments</dt><dd>SECURE</dd></div>
+        <div><dt>Database</dt><dd>ONLINE</dd></div>
+        <div><dt>API</dt><dd>HEALTHY</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="overlay overlay-right" id="menu-overlay" aria-hidden="true">
+    <nav class="panel-float mobile-nav cart-panel" style="width:min(300px,100%)" aria-label="Mobile">
+      <div class="cart-head">
+        <h2>Menu</h2>
+        <button class="icon-btn" data-close="menu" aria-label="Close">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <a href="#/" data-nav="home">Home</a>
+      <a href="#/shop" data-nav="shop">Shop</a>
+      <a href="#/collections" data-nav="collections">Categories</a>
+      <a href="#/arrivals" data-nav="arrivals">Arrivals</a>
+      <a href="#/deals" data-nav="deals">Deals</a>
+      <a href="#/journal" data-nav="journal">Journal</a>
+      <a href="#/compare" data-nav="compare">Compare</a>
+      <a href="#/atelier" data-nav="atelier">About</a>
+      <a href="#/dashboard" data-nav="dashboard">Your house</a>
+    </nav>
+  </div>
+
+  <div class="compare-bar" id="compare-bar" hidden>
+    <span id="compare-label">0 selected</span>
+    <button class="btn btn-ghost btn-sm" id="compare-clear">Clear</button>
+    <a class="btn btn-primary btn-sm" href="#/compare">Compare</a>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <div id="nexora-admin" hidden aria-hidden="true"></div>
+</body>
+</html>
