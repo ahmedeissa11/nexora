@@ -845,7 +845,12 @@ function cartTotal() {
 
 function toast(msg) {
   const el = $("#toast");
-  el.textContent = msg;
+  if (!el) return;
+  if (msg && typeof msg === "object") {
+    msg = msg.message || msg.error || "";
+    if (msg && typeof msg === "object") msg = msg.message || "";
+  }
+  el.textContent = String(msg == null ? "" : msg);
   el.classList.add("show");
   clearTimeout(toast._t);
   toast._t = setTimeout(() => el.classList.remove("show"), 2200);

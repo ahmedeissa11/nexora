@@ -12,6 +12,14 @@
     return b;
   }
 
+  function readErrorMessage(data, fallback) {
+    var e = data && data.error;
+    if (typeof e === "string" && e.trim()) return e;
+    if (e && typeof e.message === "string" && e.message.trim()) return e.message;
+    if (typeof data === "string" && data.trim()) return data;
+    return fallback || "Request failed";
+  }
+
   function apiUrl(path) {
     var p = String(path || "");
     if (p.charAt(0) !== "/") p = "/" + p;
@@ -33,7 +41,7 @@
       return {};
     });
     if (!res.ok) {
-      const err = new Error(data.error || "Request failed");
+      const err = new Error(readErrorMessage(data, "Request failed"));
       err.status = res.status;
       throw err;
     }
