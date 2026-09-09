@@ -8,13 +8,15 @@ const fs = require("fs");
 const path = require("path");
 
 const dest = path.join(__dirname, "..", "config.js");
+// Same-origin /api so Vercel can rewrite to Express (first-party cookies on iOS).
+// A remote NEXORA_API_BASE is ignored on Vercel; rewrites handle the API host.
 const raw = String(process.env.NEXORA_API_BASE || "")
   .trim()
   .replace(/\/+$/, "");
-const ok = raw && /^https?:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(raw) ? raw : "";
-if (ok && /localhost|127\.0\.0\.1/i.test(ok) && process.env.VERCEL === "1") {
+if (raw && /localhost|127\.0\.0\.1/i.test(raw) && process.env.VERCEL === "1") {
   throw new Error("NEXORA_API_BASE must not be localhost on Vercel");
 }
+const ok = "";
 
 const body =
   "/* PUBLIC frontend config. No secrets. Empty base = same-origin /api. */\n" +
