@@ -14,6 +14,7 @@ function resolvePort() {
 }
 
 function selectPrismaEngine() {
+  delete process.env.PRISMA_QUERY_ENGINE_LIBRARY;
   const dirs = [
     path.join(__dirname, "../node_modules/.prisma/client"),
     path.join(__dirname, "../node_modules/@prisma/engines"),
@@ -24,15 +25,29 @@ function selectPrismaEngine() {
     "libquery_engine-debian-openssl-1.1.x.so.node",
     "libquery_engine-linux-openssl-1.1.x.so.node",
   ];
+  const tried = [];
   for (const dir of dirs) {
     for (const name of names) {
       const full = path.join(dir, name);
-      if (fs.existsSync(full)) {
+      if (!fs.existsSync(full)) continue;
+      tried.push(name);
+      try {
+        require(full);
+        try {
+          delete require.cache[require.resolve(full)];
+        } catch (_err) {
+          /* native already loaded */
+        }
         process.env.PRISMA_QUERY_ENGINE_LIBRARY = full;
+        logInfo("prisma-engine", { file: name, ok: true, tried });
         return name;
+      } catch (err) {
+        const msg = err && err.message ? String(err.message).slice(0, 160) : "require failed";
+        logInfo("prisma-engine", { file: name, ok: false, msg });
       }
     }
   }
+  logInfo("prisma-engine", { file: "auto", ok: false, tried });
   return null;
 }
 
