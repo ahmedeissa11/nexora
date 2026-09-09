@@ -15,16 +15,6 @@ function listen(app) {
 }
 
 async function start() {
-  if (config.isProd) {
-    try {
-      await pingDatabase();
-    } catch (err) {
-      runtime.inc("dbFail");
-      logError("startup-db", err);
-      throw new Error("DATABASE_URL unreachable");
-    }
-  }
-
   const app = createApp();
   const stopSweeper = startReservationSweeper();
   const server = await listen(app);
@@ -33,6 +23,16 @@ async function start() {
     env: config.env,
     stripe: config.stripeConfigured ? "configured" : "not_configured",
   });
+
+  try {
+    await pingDatabase();
+  } catch (err) {
+    runtime.inc("dbFail");
+    logError("startup-db", err);
+    if (config.isProd) {
+      logError("startup-db", { message: "DATABASE_URL unreachable; HTTP port is live" });
+    }
+  }
 
   const handle = { app, server, stopSweeper };
   return handle;
