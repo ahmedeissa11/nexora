@@ -89,8 +89,11 @@ function createApp() {
     app.get("/", (req, res) => {
       res.sendFile(path.join(FRONT, "index.html"));
     });
-    app.get(["/admin", "/admin/*"], (req, res) => {
-      res.sendFile(path.join(FRONT, "index.html"));
+    app.use((req, res, next) => {
+      if (req.method !== "GET" && req.method !== "HEAD") return next();
+      const p = req.path || "";
+      if (p !== "/admin" && p.indexOf("/admin/") !== 0) return next();
+      return res.sendFile(path.join(FRONT, "index.html"));
     });
   }
 
