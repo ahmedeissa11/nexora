@@ -20,6 +20,8 @@ function selectPrismaEngine() {
     path.join(__dirname, "../node_modules/@prisma/engines"),
   ];
   const names = [
+    "libquery_engine-linux-musl-openssl-3.0.x.so.node",
+    "libquery_engine-linux-musl.so.node",
     "libquery_engine-debian-openssl-3.0.x.so.node",
     "libquery_engine-linux-openssl-3.0.x.so.node",
     "libquery_engine-debian-openssl-1.1.x.so.node",
